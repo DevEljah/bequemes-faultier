@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.svg";
+import logo from "../assets/faultier_.png";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { FaTimes } from "react-icons/fa";
@@ -9,7 +9,32 @@ import CartButtons from "./CartButtons";
 import { useUserContext } from "../context/user_context";
 
 const Sidebar = () => {
-  return <h4>sidebar</h4>;
+  const isOpen = true;
+  return (
+    <SidebarContainer>
+      <aside className={`${isOpen ? "sidebar show-sidebar" : "sidebar"}`}>
+        <div className="sidebar-header">
+          <img src={logo} className="logo" alt="Bequemes Faultier" />
+          <button type="button" className="close-btn">
+            <FaTimes />
+          </button>
+        </div>
+        <ul className="links">
+          {links.map(({ id, text, url }) => {
+            return (
+              <li key={id}>
+                <Link to={url}>{text}</Link>
+              </li>
+            );
+          })}
+          <li>
+            <Link to="checkout">checkout</Link>
+          </li>
+        </ul>
+        <CartButtons />
+      </aside>
+    </SidebarContainer>
+  );
 };
 
 const SidebarContainer = styled.div`
@@ -27,7 +52,7 @@ const SidebarContainer = styled.div`
     color: var(--clr-primary-5);
     transition: var(--transition);
     cursor: pointer;
-    color: var(--clr-red-dark);
+    color: var(--clr-primary-5);
     margin-top: 0.2rem;
   }
   .close-btn:hover {
@@ -35,7 +60,7 @@ const SidebarContainer = styled.div`
   }
   .logo {
     justify-self: center;
-    height: 45px;
+    height: 80px;
   }
   .links {
     margin-bottom: 2rem;
@@ -66,12 +91,12 @@ const SidebarContainer = styled.div`
     height: 100%;
     background: var(--clr-white);
     transition: var(--transition);
-    transform: translate(-100%);
-    z-index: -1;
+    transform: translate(-100%); //hide//
+    z-index: -1; //hide//
   }
   .show-sidebar {
     transform: translate(0);
-    z-index: 999;
+    z-index: 999; //show//
   }
   .cart-btn-wrapper {
     margin: 2rem auto;

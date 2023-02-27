@@ -12,8 +12,13 @@ const Contact = () => {
             tenetur, illo ipsam quis rem odit laudantium expedita ad placeat
             quasi.
           </p>
-          <form /* action="" */ className="contact-form">
+          <form
+            action="https://formspree.io/f/myyajzrr" //formspree.io
+            method="POST" //formspree.io
+            className="contact-form"
+          >
             <input
+              name="email" //formspree.io
               type="email"
               placeholder="enter email"
               className="form-input"

@@ -46,15 +46,15 @@ const products_reducer = (state, action) => {
   if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
     return {
       ...state,
-      single_products_loading: false,
-      single_products: action.payload,
+      single_product_loading: false,
+      single_product: action.payload,
     };
   }
   if (action.type === GET_SINGLE_PRODUCT_ERROR) {
     return {
       ...state,
-      single_products_loading: false,
-      single_products_error: true,
+      single_product_loading: false,
+      single_product_error: true,
     };
   }
 

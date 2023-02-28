@@ -7,7 +7,35 @@ import Loading from "./Loading";
 import Product from "./Product";
 
 const FeaturedProducts = () => {
-  return <h4>featured products</h4>;
+  const {
+    products_loading: loading,
+    product_error: error,
+    featured_products: featured,
+  } = useProductsContext();
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <Error />;
+  }
+  return (
+    <Wrapper className="section">
+      <div className="title">
+        <h2>featured products</h2>
+        <div className="underline"></div>
+      </div>
+      <div className="section-center featured">
+        {featured.map((product) => {
+          return <Product key={product.id} {...product} />;
+        })}
+        {/* {featured.slice(0, 3).map((product) => {
+          // if you render just 3 item of all(6)
+          //slice(0,3) index of 0, 1, 2 is selected!
+          return <Product key={product.id} {...product} />;
+        })} */}
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.section`

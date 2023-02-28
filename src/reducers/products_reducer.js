@@ -25,7 +25,7 @@ const products_reducer = (state, action) => {
       (product) => product.featured === true
     );
     // console.log(featured_products);
-    // console.log(action.payload);
+    // console.log(action);
     return {
       ...state,
       products_loading: false,

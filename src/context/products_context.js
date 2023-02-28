@@ -50,6 +50,8 @@ export const ProductsProvider = ({ children }) => {
 
   useEffect(() => {
     fetchProducts(url);
+    // to test "Error Component" set;
+    // fetchProducts(`${url}s`); // e.g
   }, []);
 
   return (

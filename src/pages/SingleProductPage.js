@@ -27,9 +27,6 @@ const SingleProductPage = () => {
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
     // console.log(product);
-    if (loading) {
-      return <Loading />;
-    }
   }, [id]);
   //"[id]" as the "id" changes new "product" would be fetch
 
@@ -43,6 +40,13 @@ const SingleProductPage = () => {
   }, [error]);
   // "[error]" at first the initial value will be "false"
   // but after 3 sec "true"
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <Error />;
+  }
 
   return <Wrapper>single product page</Wrapper>;
 };

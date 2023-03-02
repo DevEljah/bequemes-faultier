@@ -54,7 +54,7 @@ const SingleProductPage = () => {
     description,
     stock,
     stars,
-    reviwes,
+    reviews,
     id: sku,
     company,
     images,
@@ -71,8 +71,8 @@ const SingleProductPage = () => {
           <ProductImages images={images} />
           <section className="content">
             {<h2> {name} </h2>}
-            <Stars className="price" />
-            <h5> {formatPrice(price)} </h5>
+            <Stars stars={stars} reviews={reviews} />
+            <h5 className="price"> {formatPrice(price)} </h5>
             <p className="desc"> {description} </p>
             <p className="info">
               <span>Available :</span>

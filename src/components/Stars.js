@@ -7,18 +7,16 @@ const Stars = ({ stars, reviews }) => {
     // gotcha! first parameter (actual item) set to "_" bc it "undefined"
     const number = index + 0.5; //to get the "values" 0.5, 1,5, 2,5 ...
     return (
-      <>
-        <span key={index}>
-          {stars >= index + 1 ? (
-            /* bc initially index is 0 */
-            <BsStarFill />
-          ) : stars >= number ? (
-            <BsStarHalf />
-          ) : (
-            <BsStar />
-          )}
-        </span>
-      </>
+      <span key={index}>
+        {stars >= index + 1 ? (
+          /* bc initially index is 0 */
+          <BsStarFill />
+        ) : stars >= number ? (
+          <BsStarHalf />
+        ) : (
+          <BsStar />
+        )}
+      </span>
     );
   });
 

@@ -38,7 +38,7 @@ export const FilterProvider = ({ children }) => {
   // thats why as a dependency we pass-in the "products"!
 
   return (
-    <FilterContext.Provider value="filter context">
+    <FilterContext.Provider value={{ ...state }}>
       {children}
     </FilterContext.Provider>
   );

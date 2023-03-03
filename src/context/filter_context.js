@@ -38,8 +38,15 @@ export const FilterProvider = ({ children }) => {
   // even in the "products_context"!
   // thats why as a dependency we pass-in the "products"!
 
+  const setGridView = () => {
+    dispatch({ type: SET_GRIDVIEW });
+  };
+  const setListView = () => {
+    dispatch({ type: SET_LISTVIEW });
+  };
+
   return (
-    <FilterContext.Provider value={{ ...state }}>
+    <FilterContext.Provider value={{ ...state, setGridView, setListView }}>
       {children}
     </FilterContext.Provider>
   );

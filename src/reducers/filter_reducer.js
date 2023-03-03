@@ -25,8 +25,16 @@ const filter_reducer = (state, action) => {
       // so using the "spread operator" the values can be copied
       // so this it's not referenced to the same place in memory (bc it's cpied)
     };
-    // return state;
-    throw new Error(`No Matching "${action.type}" - action type`);
   }
+
+  if (action.type === SET_GRIDVIEW) {
+    return { ...state, grid_view: true };
+  }
+  if (action.type === SET_LISTVIEW) {
+    return { ...state, grid_view: false };
+  }
+
+  // return state;
+  throw new Error(`No Matching "${action.type}" - action type`);
 };
 export default filter_reducer;

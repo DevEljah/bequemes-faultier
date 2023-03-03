@@ -13,6 +13,13 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <ProductsProvider>
-    <App />
+    <FilterProvider>
+      <App />
+    </FilterProvider>
   </ProductsProvider>
 );
+
+// gotcha!: place the "FilterProvider" inside of the "ProductsProvider"
+// bc to get some info from the "product" in to the "filter"
+// so that just ensures that we'll aleays hv access to the data that
+// coming from the "ProductsProvider"

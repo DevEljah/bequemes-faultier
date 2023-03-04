@@ -37,6 +37,32 @@ const filter_reducer = (state, action) => {
     return { ...state, sort: action.payload };
   }
 
+  if (action.type === SORT_PRODUCTS) {
+    const { sort, filtered_products } = state;
+    let tempPorducts = [...filtered_products]; //? not [] ?
+    if (sort == "price-lowest") {
+      tempPorducts = tempPorducts.sort((a, b) => a.price - b.price);
+    }
+    if (sort == "price-highest") {
+      tempPorducts = tempPorducts.sort((a, b) => b.price - a.price);
+    }
+    if (sort == "name-a") {
+      tempPorducts = tempPorducts.sort((a, b) => {
+        return a.name.localeCompare(b.name, { ignorePunctuation: true });
+      });
+    }
+    if (sort == "name-z")
+      tempPorducts = tempPorducts.sort((a, b) => {
+        return b.name.localeCompare(a.name, { ignorePunctuation: true });
+      });
+    return { ...state, filtered_products: tempPorducts }; //?
+    // ANS; bc if in case in some weird scenario none of them match
+    // then at least it will display somting
+    // otherwise if gonna go with with empty array for temProducts &
+    // set the "filtered_products" equal to an empty array the products
+    // there won't be displayed
+  }
+
   // return state;
   throw new Error(`No Matching "${action.type}" - action type`);
 };

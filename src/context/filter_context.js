@@ -39,6 +39,11 @@ export const FilterProvider = ({ children }) => {
   // even in the "products_context"!
   // thats why as a dependency we pass-in the "products"!
 
+  useEffect(() => {
+    dispatch({ type: SORT_PRODUCTS });
+  }, [products, state.sort]);
+  //when the "porducts" or "state.sort" changes.
+
   const setGridView = () => {
     dispatch({ type: SET_GRIDVIEW });
   };

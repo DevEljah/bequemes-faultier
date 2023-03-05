@@ -69,6 +69,16 @@ const filter_reducer = (state, action) => {
     // set the "filtered_products" equal to an empty array the products
     // there won't be displayed
   }
+  if (action.type === UPDATE_FILTERS) {
+    const { name, value } = action.payload;
+    return { ...state, filters: { ...state.filters, [name]: value } };
+    // [name]: value == >> whatever name value is passing
+    // access that property and set it to the "value"
+  }
+  if (action.type === FILTER_PRODUCTS) {
+    console.log("filtering products");
+    return { ...state };
+  }
 
   // return state;
   throw new Error(`No Matching "${action.type}" - action type`);

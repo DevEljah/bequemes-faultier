@@ -50,9 +50,11 @@ export const FilterProvider = ({ children }) => {
   // thats why as a dependency we pass-in the "products"!
 
   useEffect(() => {
+    dispatch({ type: FILTER_PRODUCTS });
     dispatch({ type: SORT_PRODUCTS });
-  }, [products, state.sort]);
+  }, [products, state.sort, state.filters]);
   //when the "porducts" or "state.sort" changes.
+  //state.filters == >> when every time the value in this object changes this useEffect will be run.
 
   const setGridView = () => {
     dispatch({ type: SET_GRIDVIEW });
@@ -65,9 +67,23 @@ export const FilterProvider = ({ children }) => {
     dispatch({ type: UPDATE_SORT, payload: value });
   };
 
+  const updateFilters = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    dispatch({ type: updateFilters, payload: { name, value } });
+  };
+  const clearFilters = () => {};
+
   return (
     <FilterContext.Provider
-      value={{ ...state, setGridView, setListView, updateSort }}
+      value={{
+        ...state,
+        setGridView,
+        setListView,
+        updateSort,
+        updateFilters,
+        clearFilters,
+      }}
     >
       {children}
     </FilterContext.Provider>

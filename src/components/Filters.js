@@ -6,7 +6,16 @@ import { FaCheck } from "react-icons/fa";
 
 const Filters = () => {
   const {
-    filters: { text, category, company, color, min_price, max_price, shipping },
+    filters: {
+      text,
+      category,
+      company,
+      color,
+      pice,
+      min_price,
+      max_price,
+      shipping,
+    },
     updateFilters,
     clearFilters,
     all_products,
@@ -16,7 +25,7 @@ const Filters = () => {
       <div className="content">
         <form onSubmit={(e) => e.preventDefault()}>
           {/* search input start */}
-          <div>
+          <div className="form-control">
             <input
               type="text"
               name="text"
@@ -25,6 +34,7 @@ const Filters = () => {
               /* controlled input !*/
               value={text} /* "text" comming from "state" */
               onChange={updateFilters}
+              /* controlled input end !*/
             >
               {/* "name" value must hv exact same "attribute"
           as in "state" (in filter_context in initialState) */}

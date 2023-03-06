@@ -11,7 +11,7 @@ const Filters = () => {
       category,
       company,
       color,
-      pice,
+      price,
       min_price,
       max_price,
       shipping,
@@ -75,7 +75,6 @@ const Filters = () => {
           {/* companies start */}
           <div className="form-control">
             <h5>company</h5>
-
             <select
               name="company" /*must match with filter state value(initialState filter_context)*/
               value={company} /*since it' wanted to be a "contolled input" */
@@ -90,6 +89,29 @@ const Filters = () => {
             </select>
           </div>
           {/* companies end */}
+
+          {/* colors start */}
+          <div className="forml-control">
+            <h5>colors</h5>
+            <div className="colors">
+              {colors.map((c, index) => (
+                <button
+                  key={index}
+                  name="color" /*must match with filter state value value(initialState filter_context)*/
+                  style={{ background: c }}
+                  className={`${
+                    color === c ? "color-btn active" : "color-btn"
+                  }`}
+                  data-color={c} /*bc it a button so to get the value
+                                  "'data' attribute of html" is used*/
+                  onClick={updateFilters}
+                >
+                  {color === c ? <FaCheck /> : null}
+                </button>
+              ))}
+            </div>
+          </div>
+          {/* colors end */}
         </form>
       </div>
     </Wrapper>

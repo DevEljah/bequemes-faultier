@@ -70,6 +70,11 @@ export const FilterProvider = ({ children }) => {
   const updateFilters = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+
+    // console.log(value);
+    if (name === "category") {
+      value = e.target.textContent; //gets the "text" that's inside of the "button"
+    }
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
   const clearFilters = () => {};

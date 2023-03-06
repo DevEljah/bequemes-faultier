@@ -23,8 +23,8 @@ const Filters = () => {
 
   const categories = getUniqueValues(all_products, "category");
   const companies = getUniqueValues(all_products, "company");
-  const colors = getUniqueValues(all_products, "colors"); //this's gona be Array (array of arrays)! so different approach
-  console.log(categories);
+  const colors = getUniqueValues(all_products, "colors"); //this's gonna be Array (array of arrays)! so different approach
+  // console.log(categories);
   // console.log(companies);
   // console.log(all_products);
   return (
@@ -47,6 +47,30 @@ const Filters = () => {
             ></input>
           </div>
           {/* search input end */}
+
+          {/* categories start */}
+          <div className="form-control">
+            <h5>category</h5>
+            <div>
+              {categories.map((c, index) => (
+                <button
+                  key={index}
+                  onClick={updateFilters}
+                  name="category"
+                  type="button"
+                  className={`${
+                    category === c.toLowerCase() ? "active" : null
+                  }`}
+                >
+                  {c}
+                </button>
+                /*gotcha! in button, cannot access the text 
+              inside of the button (it's not "input")
+              "value" cannot be accessed that bc that is'nt exist(in buttons)!*/
+              ))}
+            </div>
+          </div>
+          {/* categories end */}
         </form>
       </div>
     </Wrapper>

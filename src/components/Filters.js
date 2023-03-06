@@ -20,6 +20,13 @@ const Filters = () => {
     clearFilters,
     all_products,
   } = useFilterContext();
+
+  const categories = getUniqueValues(all_products, "category");
+  const companies = getUniqueValues(all_products, "company");
+  const colors = getUniqueValues(all_products, "colors"); //this's gona be Array (array of arrays)! so different approach
+  console.log(categories);
+  // console.log(companies);
+  // console.log(all_products);
   return (
     <Wrapper>
       <div className="content">
@@ -29,16 +36,15 @@ const Filters = () => {
             <input
               type="text"
               name="text"
+              /* "name" value must hv exact same "attribute"
+          as in "state" (in filter_context in initialState) */
               placeholder="search"
               className="search-input"
               /* controlled input !*/
               value={text} /* "text" comming from "state" */
               onChange={updateFilters}
               /* controlled input end !*/
-            >
-              {/* "name" value must hv exact same "attribute"
-          as in "state" (in filter_context in initialState) */}
-            </input>
+            ></input>
           </div>
           {/* search input end */}
         </form>

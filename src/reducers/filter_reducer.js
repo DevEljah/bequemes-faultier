@@ -76,7 +76,7 @@ const filter_reducer = (state, action) => {
     // access that property and set it to the "value"
   }
   if (action.type === FILTER_PRODUCTS) {
-    console.log("filtering products");
+    // console.log("filtering products");
     return { ...state };
   }
 

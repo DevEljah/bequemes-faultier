@@ -56,7 +56,7 @@ const Filters = () => {
                 <button
                   key={index}
                   onClick={updateFilters}
-                  name="category"
+                  name="category" /*must match with filter state value(initialState filter_context)*/
                   type="button"
                   className={`${
                     category === c.toLowerCase() ? "active" : null
@@ -71,6 +71,25 @@ const Filters = () => {
             </div>
           </div>
           {/* categories end */}
+
+          {/* companies start */}
+          <div className="form-control">
+            <h5>company</h5>
+
+            <select
+              name="company" /*must match with filter state value(initialState filter_context)*/
+              value={company} /*since it' wanted to be a "contolled input" */
+              onChange={updateFilters}
+              className="company"
+            >
+              {companies.map((co, index) => (
+                <option key={index} value={co}>
+                  {co}
+                </option>
+              ))}
+            </select>
+          </div>
+          {/* companies end */}
         </form>
       </div>
     </Wrapper>

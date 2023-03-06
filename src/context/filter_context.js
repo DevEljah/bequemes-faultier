@@ -75,6 +75,9 @@ export const FilterProvider = ({ children }) => {
     if (name === "category") {
       value = e.target.textContent; //gets the "text" that's inside of the "button"
     }
+    if (name === "color") {
+      value = e.target.dataset.color;
+    }
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
   const clearFilters = () => {};

@@ -94,21 +94,38 @@ const Filters = () => {
           <div className="forml-control">
             <h5>colors</h5>
             <div className="colors">
-              {colors.map((c, index) => (
-                <button
-                  key={index}
-                  name="color" /*must match with filter state value value(initialState filter_context)*/
-                  style={{ background: c }}
-                  className={`${
-                    color === c ? "color-btn active" : "color-btn"
-                  }`}
-                  data-color={c} /*bc it a button so to get the value
+              {colors.map((c, index) => {
+                if (c === "all") {
+                  return (
+                    <button
+                      key={index}
+                      name="color"
+                      onClick={updateFilters}
+                      data-color="all"
+                      className={`${
+                        color === "all" ? "all-btn active" : "all-btn"
+                      }`}
+                    >
+                      all
+                    </button>
+                  );
+                }
+                return (
+                  <button
+                    key={index}
+                    name="color" /*must match with filter state value value(initialState filter_context)*/
+                    style={{ background: c }}
+                    className={`${
+                      color === c ? "color-btn active" : "color-btn"
+                    }`}
+                    data-color={c} /*bc it a button so to get the value
                                   "'data' attribute of html" is used*/
-                  onClick={updateFilters}
-                >
-                  {color === c ? <FaCheck /> : null}
-                </button>
-              ))}
+                    onClick={updateFilters}
+                  >
+                    {color === c ? <FaCheck /> : null}
+                  </button>
+                );
+              })}
             </div>
           </div>
           {/* colors end */}

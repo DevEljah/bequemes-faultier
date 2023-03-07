@@ -78,6 +78,9 @@ export const FilterProvider = ({ children }) => {
     if (name === "color") {
       value = e.target.dataset.color;
     }
+    if (name === "price") {
+      value = Number(value); //to have the "input-range" as Number!
+    }
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
   const clearFilters = () => {};

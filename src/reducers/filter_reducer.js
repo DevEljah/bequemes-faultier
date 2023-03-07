@@ -14,7 +14,7 @@ const filter_reducer = (state, action) => {
     let maxPrice = action.payload.map((p) => p.price); //getting all the prices!
     maxPrice = Math.max(...maxPrice);
     // in the "max()" - method "Array" can't be passed
-    // thats whay "spreed operator" is used
+    // thats why "spreed operator" is used
     return {
       ...state,
       all_products: [...action.payload],
@@ -29,7 +29,7 @@ const filter_reducer = (state, action) => {
       // so using the "spread operator" the values can be copied
       // so this it's not referenced to the same place in memory (bc it's cpied)
 
-      filters: { ...state.filters, maxPrice: maxPrice, price: maxPrice },
+      filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
       // copy previous values (in initialState)
     };
   }

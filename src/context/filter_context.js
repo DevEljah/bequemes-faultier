@@ -81,6 +81,10 @@ export const FilterProvider = ({ children }) => {
     if (name === "price") {
       value = Number(value); //to have the "input-range" as Number!
     }
+    if (name === "shipping") {
+      value = e.target.checked; //to get the "value" from "checkbox"
+      //if it's true the "value"(shipping)" will be true and if false ...
+    }
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
   const clearFilters = () => {};

@@ -11,9 +11,25 @@ const cart_reducer = (state, action) => {
     const { id, color, amount, product } = action.payload;
     const temItem = state.cart.find((item) => item.id === id + color);
     if (temItem) {
+      // if Item is in the Cart
+      const temCart = state.cart.map((cartItem) => {
+        if (cartItem.id === id + color) {
+          // if the "id" matches
+          let newAmount = cartItem.amount + amount;
+          if (newAmount > cartItem.max) {
+            newAmount = cartItem.max;
+          }
+          return { ...cartItem, amount: newAmount };
+        } else {
+          // if the "id" doesn't match
+          return cartItem;
+        }
+      });
+      return { ...state, cart: temCart };
     } else {
+      // if Item is not in the Cart
       const newItem = {
-        id: id + color,
+        id: id + color, //bc same cart-item can hv different colors
         name: product.name,
         color,
         amount,

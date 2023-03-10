@@ -36,6 +36,10 @@ export const CartProvider = ({ children }) => {
     // color = mainColor / amount = amount (in AddToCart component)
     dispatch({ type: ADD_TO_CART, payload: { id, color, amount, product } });
   };
+
+  // clear cart
+  const clearCart = () => {};
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]); //everytime "state.cart" changes!

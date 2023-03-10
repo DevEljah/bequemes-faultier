@@ -11,7 +11,7 @@ const AddToCart = ({ product }) => {
 
   const [mainColor, setMainColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
-  // since there's no pint on adding "0" items to the cart
+  // since there's no point on adding "0" items to the cart
   // by default it's going to be "1"
 
   const increase = () => {

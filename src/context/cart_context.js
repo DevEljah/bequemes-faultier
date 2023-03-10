@@ -37,6 +37,11 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: ADD_TO_CART, payload: { id, color, amount, product } });
   };
 
+  // add to cart
+  const removeItem = (id) => {};
+  // toggle amount
+  const toggleAmount = (id, value) => {};
+
   // clear cart
   const clearCart = () => {};
 

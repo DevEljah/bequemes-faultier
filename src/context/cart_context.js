@@ -38,19 +38,24 @@ export const CartProvider = ({ children }) => {
   };
 
   // add to cart
-  const removeItem = (id) => {};
+  const removeItem = (id) => {
+    dispatch({ type: REMOVE_CART_ITEM, payload: id });
+  };
+  // clear cart
+  const clearCart = () => {
+    dispatch({ type: CLEAR_CART });
+  };
   // toggle amount
   const toggleAmount = (id, value) => {};
-
-  // clear cart
-  const clearCart = () => {};
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]); //everytime "state.cart" changes!
   // console.log(state.cart);
   return (
-    <CartContext.Provider value={{ ...state, addToCart }}>
+    <CartContext.Provider
+      value={{ ...state, addToCart, removeItem, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );

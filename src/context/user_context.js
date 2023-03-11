@@ -5,12 +5,19 @@ const UserContext = React.createContext();
 export const UserProvider = ({ children }) => {
   const { isAuthenticated, loginWithRedirect, logout, user, isLoading } =
     useAuth0();
-  const { myUser, setMyUser } = useState(null);
+
+  const [myUser, setMyUser] = useState(null);
 
   useEffect(() => {
-    console.log(`user: ${user}`);
-    console.log(`isAuthenticated: ${isAuthenticated}`);
-    console.log(`isLoading: ${isLoading}`);
+    // console.log(`user: ${user}`);
+    // console.log(`isAuthenticated: ${isAuthenticated}`);
+    // console.log(`isLoading: ${isLoading}`);
+    if (isAuthenticated) {
+      setMyUser(user); //set it to whatever user getting from the "Auth0"
+    } else {
+      //if user logs out!
+      setMyUser(false);
+    }
   }, [isAuthenticated]);
 
   return (

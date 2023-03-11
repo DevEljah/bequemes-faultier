@@ -9,7 +9,7 @@ import Product from "./Product";
 const FeaturedProducts = () => {
   const {
     products_loading: loading,
-    product_error: error,
+    products_error: error,
     featured_products: featured,
   } = useProductsContext();
   if (loading) {
@@ -34,6 +34,9 @@ const FeaturedProducts = () => {
           return <Product key={product.id} {...product} />;
         })} */}
       </div>
+      <Link to="/products" className="btn">
+        all products
+      </Link>
     </Wrapper>
   );
 };

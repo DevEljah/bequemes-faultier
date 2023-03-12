@@ -1,4 +1,4 @@
-// .netlify/functions/hi
+// domain.netlify/functions/hi
 exports.handler = async function () {
   ///////////////////////////
   ///////// API e.g /////////

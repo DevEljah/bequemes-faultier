@@ -55,7 +55,10 @@ const CheckoutForm = () => {
         "/.netlify/functions/create-payment-intent",
         JSON.stringify({ cart, shipping_fee, total_amount }) //what's gonna be pass
       );
-    } catch (error) {}
+      console.log(data);
+    } catch (error) {
+      console.log(error.responce);
+    }
   };
 
   useEffect(() => {
@@ -111,6 +114,7 @@ const StripeCheckout = () => {
 const Wrapper = styled.section`
   form {
     width: 30vw;
+    min-width: 350px;
     align-self: center;
     box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
       0px 2px 5px 0px rgba(50, 50, 93, 0.1),

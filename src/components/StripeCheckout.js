@@ -29,7 +29,7 @@ const CheckoutForm = () => {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
   const stipe = useStripe();
-  const element = useElements();
+  const elements = useElements();
 
   const createPaymentIntent = async () => {
     try {
@@ -68,11 +68,51 @@ const CheckoutForm = () => {
     },
   };
 
-  const handleChange = async (event) => {};
-  const handleSubmtt = async (ev) => {};
+  const handleChange = async (event) => {
+    // this is all setup by Stripe!
+    setDisabled(event.empty);
+    setError(event.error ? event.error.message : "");
+  };
+  const handleSubmtt = async (ev) => {
+    ev.preventDefault();
+    setProcessing(true);
+    // this is all setup by Stripe!
+    const payload = await stipe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+      },
+    });
+    if (payload.error) {
+      setError(`Payment failed ${payload.error.message}`);
+      setProcessing(false);
+    } else {
+      setError(null);
+      setProcessing(false);
+      setSucceeded(true);
+      // optional! (notting to do with Stripe!)
+      setTimeout(() => {
+        clearCart();
+        history.push("/"); // to the home page
+      }, 10000); // 10 sec
+    }
+  };
 
   return (
     <div>
+      {succeeded ? (
+        <article>
+          <h4>Thank you</h4>
+          <h4>Your payment was successful!</h4>
+          <h4>Redirecting to home page shortly</h4>
+        </article>
+      ) : (
+        <article>
+          <h4>Hello, {myUser && myUser.name} </h4>
+          <p>Your total is {formatPrice(shipping_fee + total_amount)} </p>
+          <p>Test Card : 4242 4242 4242 4242</p>
+        </article>
+      )}
+
       <form id="payment-form" onSubmit={handleSubmtt}>
         <CardElement
           id="cart-element"

@@ -1,6 +1,7 @@
 //domain.netlify/functions/create-payment-intent
-require("dotenv").config();
 
+const dotenv = require("dotenv");
+dotenv.config();
 const stripe = require("stripe")(process.env.REACT_APP_STRIPE_SECRET_KEY);
 
 exports.handler = async function (event, context) {
@@ -10,10 +11,14 @@ exports.handler = async function (event, context) {
     // console.log(cart);
 
     const calculateOrderAmount = () => {
+      // Replace this constant with a calculation of the order's amount
+      // Calculate the order total on the server to prevent
+      // people from directly manipulating the amount on the client
       return shipping_fee + total_amount;
     };
 
     try {
+      // Create a PaymentIntent with the order amount and currency
       const paymentIntent = await stripe.paymentIntents.create({
         amount: calculateOrderAmount(),
         currency: "eur",
@@ -25,12 +30,8 @@ exports.handler = async function (event, context) {
     } catch (error) {
       return {
         statusCode: 500,
-        body: JSON.stringify({ msg: error.message }),
+        body: JSON.stringify({ error: error.message }),
       };
     }
   }
-  return {
-    statusCode: 200,
-    body: "payment-intent",
-  };
 };

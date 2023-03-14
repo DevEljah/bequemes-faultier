@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/faultier_.png";
+import logo from "../assets/logo_.png";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { FaTimes } from "react-icons/fa";
@@ -73,7 +73,9 @@ const SidebarContainer = styled.div`
   }
   .logo {
     justify-self: center;
-    height: 80px;
+    height: 70px;
+    margin-top: -5px;
+    margin-left: -15px;
   }
   .links {
     margin-bottom: 2rem;
